@@ -11,8 +11,7 @@ import java.util.List;
 @Service
 public class ServiceClass {
 
-    @Autowired
-    RepositoryClass repositoryClass;
+    RepositoryClass repositoryClass = new RepositoryClass();
 
     public void addOrder(Order order){
 
