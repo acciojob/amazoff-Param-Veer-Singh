@@ -18,18 +18,23 @@ public class RepositoryClass {
     HashMap<String, List<String>> deliveryOrderPair = new HashMap<>();
 
     public void addOrder(Order order){
+        if(orderHashMap.containsKey(order.getId()))return;
+
         String id = order.getId();
         orderHashMap.put(id,order);
     }
 
     public void addPartner(String partnerId){
+        if (deliveryPartnerHashMap.containsKey(partnerId))return;
 
         deliveryPartnerHashMap.put(partnerId,new DeliveryPartner(partnerId));
     }
 
     public void addOrderPartnerPair(String orderId, String partnerId){
 
-        orderDeliveryPair.put(orderId,partnerId);
+        if(orderHashMap.containsKey(orderId) && deliveryPartnerHashMap.containsKey(partnerId)){
+            orderDeliveryPair.put(orderId,partnerId);
+        }else return;
 
         List<String> orders = deliveryOrderPair.getOrDefault(partnerId,new ArrayList<>());
         orders.add(orderId);
