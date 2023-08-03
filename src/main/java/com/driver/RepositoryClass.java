@@ -87,13 +87,22 @@ public class RepositoryClass {
     public Integer getOrdersLeftAfterGivenTimeByPartnerId(String time, String partnerId){
 
         Integer count = 0;
-        int givenTime = Integer.parseInt(time);
+        int givenTime = convertTimeStringToInteger(time);
         for(String orderId : deliveryOrderPair.get(partnerId)){
             if(orderHashMap.get(orderId).getDeliveryTime() > givenTime){
                 count++;
             }
         }
         return count;
+    }
+
+    public Integer convertTimeStringToInteger(String time){
+        String[] timeArr = time.split(":");
+
+        int HH = Integer.parseInt(timeArr[0]);
+        int MM = Integer.parseInt(timeArr[1]);
+
+        return HH * 60 + MM;
     }
 
     public String getLastDeliveryTimeByPartnerId(String partnerId){
