@@ -41,7 +41,7 @@ public class RepositoryClass {
         deliveryOrderPair.put(partnerId,orders);
 
         int noOfOrders = deliveryPartnerHashMap.get(partnerId).getNumberOfOrders();
-        deliveryPartnerHashMap.get(orderId).setNumberOfOrders(noOfOrders+1);
+        deliveryPartnerHashMap.get(partnerId).setNumberOfOrders(noOfOrders+1);
 
     }
 
@@ -81,7 +81,7 @@ public class RepositoryClass {
 
     public Integer getCountOfUnassignedOrders(){
 
-        return orderHashMap.size() - deliveryOrderPair.size();
+        return orderHashMap.size() - orderDeliveryPair.size();
     }
 
     public Integer getOrdersLeftAfterGivenTimeByPartnerId(String time, String partnerId){
@@ -126,6 +126,7 @@ public class RepositoryClass {
         for (String orderId : deliveryOrderPair.get(partnerId)){
             orderDeliveryPair.remove(orderId);
         }
+        deliveryPartnerHashMap.remove(partnerId);
         deliveryOrderPair.remove(partnerId);
     }
 
